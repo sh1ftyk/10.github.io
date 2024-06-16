@@ -1,8 +1,9 @@
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import PostForm from '../visual/PostForm/PostForm'
-import { createPost } from '../../store/blog'
+import PostForm from '../design/PostForm/PostForm'
+import { createPost } from '../../store/reducers'
 
 const PostCreate = ({ createPost, history, authorized }) => {
   const onFinish = (values) => {
@@ -17,7 +18,16 @@ const PostCreate = ({ createPost, history, authorized }) => {
 
   return <PostForm onFinish={onFinish} />
 }
-
+PostCreate.defaultProps = {
+  authorized: false,
+  createPost: () => {},
+  history: [],
+}
+PostCreate.propTypes = {
+  authorized: propTypes.bool,
+  createPost: propTypes.func,
+  history: propTypes.object,
+}
 const mapStateToProps = (state) => {
   return {
     authorized: state.authorized,

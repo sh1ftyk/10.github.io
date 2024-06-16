@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Avatar, Button, Form, Input, Checkbox } from 'antd'
 import cn from 'classnames'
@@ -102,6 +103,12 @@ export const Login = ({ onFinish }) => {
     </div>
   )
 }
+Login.defaultProps = {
+  onFinish: () => {},
+}
+Login.propTypes = {
+  onFinish: propTypes.func,
+}
 
 export const Signup = ({ onFinish }) => {
   const [form] = Form.useForm()
@@ -136,6 +143,12 @@ export const Signup = ({ onFinish }) => {
       </div>
     </div>
   )
+}
+Signup.defaultProps = {
+  onFinish: () => {},
+}
+Signup.propTypes = {
+  onFinish: propTypes.func,
 }
 
 export const Edit = ({ username, image, email, onFinish }) => {
@@ -179,4 +192,16 @@ export const Edit = ({ username, image, email, onFinish }) => {
       </Form>
     </div>
   )
+}
+Edit.defaultProps = {
+  username: '',
+  image: '',
+  email: '',
+  onFinish: () => {},
+}
+Edit.propTypes = {
+  username: propTypes.string,
+  image: propTypes.string,
+  email: propTypes.string,
+  onFinish: propTypes.func,
 }

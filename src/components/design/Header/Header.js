@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { Button, Avatar } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -14,6 +15,19 @@ const Header = ({ authorized, logOut, username, image }) => {
       </div>
     </div>
   )
+}
+
+Header.defaultProps = {
+  authorized: false,
+  logOut: () => {},
+  username: undefined,
+  image: undefined,
+}
+Header.propTypes = {
+  authorized: propTypes.bool,
+  logOut: propTypes.func,
+  username: propTypes.string,
+  image: propTypes.string,
 }
 
 export default Header

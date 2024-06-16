@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { Tag, Avatar, Button, Popconfirm } from 'antd'
@@ -105,6 +106,22 @@ Post.defaultProps = {
   removeLike: () => {},
   hideBody: false,
 }
+Post.propTypes = {
+  slug: propTypes.string,
+  author: propTypes.shape({ username: propTypes.string, image: propTypes.string }),
+  createdAt: propTypes.string,
+  title: propTypes.string,
+  description: propTypes.string,
+  favoritesCount: propTypes.number,
+  favorited: propTypes.bool,
+  body: propTypes.string,
+  tagList: propTypes.array,
+  user: propTypes.object,
+  removePost: propTypes.func,
+  addLike: propTypes.func,
+  removeLike: propTypes.func,
+  hideBody: propTypes.bool,
+}
 
 export default Post
 
@@ -117,4 +134,11 @@ const PostTags = ({ tagList }) => {
     )
   })
   return <>{list}</>
+}
+
+PostTags.defaultProps = {
+  tagList: [],
+}
+PostTags.propTypes = {
+  tagList: propTypes.array,
 }

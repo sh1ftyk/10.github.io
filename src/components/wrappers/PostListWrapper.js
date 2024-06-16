@@ -1,9 +1,10 @@
+import propTypes from 'prop-types'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { getPosts, addLike, removeLike } from '../../store/blog'
-import PostList from '../visual/PostList/PostList'
-import Post from '../visual/Post/Post'
+import { getPosts, addLike, removeLike } from '../../store/reducers'
+import PostList from '../design/PostList/PostList'
+import Post from '../design/Post/Post'
 
 const PostListWrapper = ({ page, totalPages, posts, getPosts, addLike, removeLike }) => {
   useEffect(() => {
@@ -17,8 +18,8 @@ const PostListWrapper = ({ page, totalPages, posts, getPosts, addLike, removeLik
   const list = posts.map((post) => {
     return (
       <Post
-        {...post}
         key={post.slug}
+        {...post}
         addLike={() => {
           addLike(post.slug)
         }}
@@ -31,6 +32,22 @@ const PostListWrapper = ({ page, totalPages, posts, getPosts, addLike, removeLik
   })
 
   return <PostList list={list} page={page} totalPages={totalPages} onPageChange={loadPage} />
+}
+PostListWrapper.defaultProps = {
+  page: 1,
+  totalPages: 1,
+  posts: [],
+  getPosts: () => {},
+  addLike: () => {},
+  removeLike: () => {},
+}
+PostListWrapper.propTypes = {
+  page: propTypes.number,
+  totalPages: propTypes.number,
+  posts: propTypes.array,
+  getPosts: propTypes.func,
+  addLike: propTypes.func,
+  removeLike: propTypes.func,
 }
 
 const mapStateToProps = (state) => {

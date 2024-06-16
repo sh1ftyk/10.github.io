@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import blog from './blog'
+import blog from './reducers'
 
 const store = configureStore({
   reducer: blog,

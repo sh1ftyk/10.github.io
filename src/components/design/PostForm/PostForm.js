@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useForm } from 'antd/es/form/Form'
 import { Form, Button, Input } from 'antd'
@@ -101,6 +102,23 @@ const PostForm = ({ title, description, body, tagList, isNew, onFinish }) => {
       </Form>
     </div>
   )
+}
+
+PostForm.defaultProps = {
+  title: '',
+  description: '',
+  body: '',
+  tagList: [''],
+  isNew: true,
+  onFinish: () => {},
+}
+PostForm.propTypes = {
+  title: propTypes.string,
+  description: propTypes.string,
+  body: propTypes.string,
+  tagList: propTypes.array,
+  isNew: propTypes.bool,
+  onFinish: propTypes.func,
 }
 
 export default PostForm

@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -14,7 +15,7 @@ import PostCreate from '../wrappers/PostCreate'
 import UserLogin from '../wrappers/UserLogin'
 import UserRegister from '../wrappers/UserRegister'
 import UserEdit from '../wrappers/UserEdit'
-import { getProfile } from '../../store/blog'
+import { getProfile } from '../../store/reducers'
 
 import css from './App.module.scss'
 import 'react-toastify/dist/ReactToastify.css'
@@ -60,6 +61,19 @@ const App = ({ getProfile, authorized, loading, error }) => {
       </Router>
     </ConfigProvider>
   )
+}
+
+App.defaultProps = {
+  getProfile: () => {},
+  authorized: false,
+  loading: false,
+  error: '',
+}
+App.propTypes = {
+  getProfile: propTypes.func,
+  authorized: propTypes.bool,
+  loading: propTypes.bool,
+  error: propTypes.string,
 }
 
 const mapStateToProps = (state) => {

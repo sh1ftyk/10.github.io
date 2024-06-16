@@ -1,9 +1,10 @@
+import propTypes from 'prop-types'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { getProfile, updateUser } from '../../store/blog'
-import { Edit } from '../visual/UserForm/UserForm'
+import { getProfile, updateUser } from '../../store/reducers'
+import { Edit } from '../design/UserForm/UserForm'
 
 const UserEdit = ({ authorized, userData, getProfile, updateUser }) => {
   useEffect(() => {
@@ -12,6 +13,18 @@ const UserEdit = ({ authorized, userData, getProfile, updateUser }) => {
 
   if (!authorized) return <Redirect to="/sign-in" />
   return <Edit {...userData} onFinish={updateUser} />
+}
+UserEdit.defaultProps = {
+  authorized: false,
+  userData: {},
+  getProfile: () => {},
+  updateUser: () => {},
+}
+UserEdit.propTypes = {
+  authorized: propTypes.bool,
+  userData: propTypes.object,
+  getProfile: propTypes.func,
+  updateUser: propTypes.func,
 }
 
 const mapStateToProps = (state) => {

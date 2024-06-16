@@ -1,9 +1,10 @@
+import propTypes from 'prop-types'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { getPost, updatePost, clearPost } from '../../store/blog'
-import PostForm from '../visual/PostForm/PostForm'
+import { getPost, updatePost, clearPost } from '../../store/reducers'
+import PostForm from '../design/PostForm/PostForm'
 
 const PostEdit = ({ match, history, authorized, postData, getPost, updatePost, clearPost }) => {
   const { slug } = match.params
@@ -24,6 +25,24 @@ const PostEdit = ({ match, history, authorized, postData, getPost, updatePost, c
   if (!authorized) return <Redirect to="/sign-in" />
 
   return <PostForm {...postData} isNew={false} onFinish={onFinish} />
+}
+PostEdit.defaultProps = {
+  match: {},
+  history: [],
+  authorized: false,
+  postData: {},
+  getPost: () => {},
+  updatePost: () => {},
+  clearPost: () => {},
+}
+PostEdit.propTypes = {
+  match: propTypes.object,
+  history: propTypes.object,
+  authorized: propTypes.bool,
+  postData: propTypes.object,
+  getPost: propTypes.func,
+  updatePost: propTypes.func,
+  clearPost: propTypes.func,
 }
 
 const mapStateToProps = (state) => {
