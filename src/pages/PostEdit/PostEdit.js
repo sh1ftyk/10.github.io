@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { getPost, updatePost, clearPost } from '../../store/reducers'
-import PostForm from '../design/PostForm/PostForm'
+import PostForm from '../../components/PostForm/PostForm'
 
 const PostEdit = ({ match, history, authorized, postData, getPost, updatePost, clearPost }) => {
   const { slug } = match.params

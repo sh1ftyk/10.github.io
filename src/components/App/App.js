@@ -1,40 +1,26 @@
 import propTypes from 'prop-types'
-import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import { Layout, ConfigProvider } from 'antd'
 import cn from 'classnames'
 
-import HeaderAuthorized from '../wrappers/HeaderAuthorized'
-import HeaderUnauthorized from '../wrappers/HeaderUnauthorized'
-import PostListWrapper from '../wrappers/PostListWrapper'
-import PostView from '../wrappers/PostView'
-import PostEdit from '../wrappers/PostEdit'
-import PostCreate from '../wrappers/PostCreate'
-import UserLogin from '../wrappers/UserLogin'
-import UserRegister from '../wrappers/UserRegister'
-import UserEdit from '../wrappers/UserEdit'
-import { getProfile } from '../../store/reducers'
+import HeaderAuthorized from '../../pages/HeaderAuthorized/HeaderAuthorized'
+import HeaderUnauthorized from '../../pages/HeaderUnauthorized/HeaderUnauthorized'
+import PostListWrapper from '../../pages/PostListWrapper/PostListWrapper'
+import PostView from '../../pages/PostView/PostView'
+import PostEdit from '../../pages/PostEdit/PostEdit'
+import PostCreate from '../../pages/PostCreate/PostCreate'
+import UserLogin from '../../pages/UserLogin/UserLogin'
+import UserRegister from '../../pages/UserRegister/UserRegister'
+import UserEdit from '../../pages/UserEdit/UserEdit'
+import { getPosts, getProfile } from '../../store/reducers'
 
 import css from './App.module.scss'
 import 'react-toastify/dist/ReactToastify.css'
 
-const App = ({ getProfile, authorized, loading, error }) => {
-  useEffect(() => {
-    getProfile()
-    if (authorized) {
-      let checkProfile = setInterval(getProfile, 60000)
-      return () => {
-        clearInterval(checkProfile)
-      }
-    }
-  }, [authorized])
-
-  useEffect(() => {
-    if (error) toast.error(error)
-  }, [error])
-
+const App = ({ authorized, loading, error }) => {
+  if (error) toast.error(error)
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#00B96B' } }}>
       <Router>
@@ -84,4 +70,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getProfile })(App)
+export default connect(mapStateToProps, { getProfile, getPosts })(App)

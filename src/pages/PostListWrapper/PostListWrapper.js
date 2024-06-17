@@ -3,13 +3,13 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { getPosts, addLike, removeLike } from '../../store/reducers'
-import PostList from '../design/PostList/PostList'
-import Post from '../design/Post/Post'
+import PostList from '../../components/PostList/PostList'
+import Post from '../../components/Post/Post'
 
-const PostListWrapper = ({ page, totalPages, posts, getPosts, addLike, removeLike }) => {
+const PostListWrapper = ({ page, totalPages, posts, getPosts, addLike, removeLike, authorized }) => {
   useEffect(() => {
     getPosts(page)
-  }, [])
+  }, [authorized])
 
   const loadPage = (page) => {
     getPosts(page)
@@ -55,6 +55,7 @@ const mapStateToProps = (state) => {
     page: state.page,
     totalPages: state.totalPages,
     posts: state.posts,
+    authorized: state.authorized,
   }
 }
 

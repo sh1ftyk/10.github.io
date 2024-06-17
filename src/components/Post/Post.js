@@ -6,7 +6,7 @@ import { Tag, Avatar, Button, Popconfirm } from 'antd'
 import { HeartOutlined, HeartFilled } from '@ant-design/icons'
 import cn from 'classnames'
 
-import cut from '../../../services/cut'
+import cut from '../../services/cut'
 
 import css from './Post.module.scss'
 

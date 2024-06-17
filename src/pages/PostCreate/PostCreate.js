@@ -2,7 +2,7 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import PostForm from '../design/PostForm/PostForm'
+import PostForm from '../../components/PostForm/PostForm'
 import { createPost } from '../../store/reducers'
 
 const PostCreate = ({ createPost, history, authorized }) => {

@@ -2,7 +2,7 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { logOut } from '../../store/reducers'
-import Header from '../design/Header/Header'
+import Header from '../../components/Header/Header'
 
 const HeaderAuthorized = ({ username, image, logOut }) => {
   return <Header username={username} image={image} logOut={logOut} authorized />

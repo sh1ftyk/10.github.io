@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { getProfile, updateUser } from '../../store/reducers'
-import { Edit } from '../design/UserForm/UserForm'
+import { Edit } from '../../components/UserForm/UserForm'
 
 const UserEdit = ({ authorized, userData, getProfile, updateUser }) => {
   useEffect(() => {

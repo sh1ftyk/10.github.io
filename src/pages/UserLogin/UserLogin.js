@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { signin } from '../../store/reducers'
-import { Login } from '../design/UserForm/UserForm'
+import { Login } from '../../components/UserForm/UserForm'
 
 const UserLogin = ({ authorized, signin }) => {
   if (authorized) return <Redirect to="/profile" />

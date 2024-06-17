@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { getPosts, getPost, clearPost, removePost, addLike, removeLike } from '../../store/reducers'
-import Post from '../design/Post/Post'
+import Post from '../../components/Post/Post'
 
 const PostView = ({ match, post, user, page, getPosts, getPost, clearPost, addLike, removeLike, removePost }) => {
   const { slug } = match.params
