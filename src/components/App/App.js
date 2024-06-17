@@ -1,7 +1,8 @@
+import { useEffect } from 'react'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { Layout, ConfigProvider } from 'antd'
 import cn from 'classnames'
 
@@ -14,13 +15,16 @@ import PostCreate from '../../pages/PostCreate/PostCreate'
 import UserLogin from '../../pages/UserLogin/UserLogin'
 import UserRegister from '../../pages/UserRegister/UserRegister'
 import UserEdit from '../../pages/UserEdit/UserEdit'
-import { getPosts, getProfile } from '../../store/reducers'
+import { getProfile } from '../../store/reducers'
 
 import css from './App.module.scss'
 import 'react-toastify/dist/ReactToastify.css'
 
-const App = ({ authorized, loading, error }) => {
-  if (error) toast.error(error)
+const App = ({ getProfile, authorized, loading }) => {
+  useEffect(() => {
+    getProfile()
+  }, [authorized])
+
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#00B96B' } }}>
       <Router>
@@ -66,8 +70,7 @@ const mapStateToProps = (state) => {
   return {
     authorized: state.authorized,
     loading: state.loading,
-    error: state.error,
   }
 }
 
-export default connect(mapStateToProps, { getProfile, getPosts })(App)
+export default connect(mapStateToProps, { getProfile })(App)

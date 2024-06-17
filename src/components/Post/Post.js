@@ -1,6 +1,8 @@
 import { format } from 'date-fns'
+import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import ReactMarkdown from 'react-markdown'
 import { Tag, Avatar, Button, Popconfirm } from 'antd'
 import { HeartOutlined, HeartFilled } from '@ant-design/icons'
@@ -25,6 +27,7 @@ const Post = ({
   addLike,
   removeLike,
   hideBody,
+  authorized,
 }) => {
   return (
     <div className={cn(css.Post, 'boxShadow')}>
@@ -35,6 +38,7 @@ const Post = ({
             <div
               className={css.like}
               onClick={() => {
+                if (!authorized) return toast.error('Please login to like the post')
                 if (favorited) {
                   removeLike(slug)
                 } else {
@@ -123,7 +127,13 @@ Post.propTypes = {
   hideBody: propTypes.bool,
 }
 
-export default Post
+const mapStateToProps = (state) => {
+  return {
+    authorized: state.authorized,
+  }
+}
+
+export default connect(mapStateToProps)(Post)
 
 const PostTags = ({ tagList }) => {
   const list = tagList.map((t, i) => {

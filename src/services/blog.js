@@ -2,9 +2,9 @@ export default class BlogApi {
   _baseUrl = 'https://blog.kata.academy/api'
 
   _token = (newToken, logOut = false) => {
-    if (newToken) localStorage.setItem('token', newToken)
-    if (logOut) localStorage.removeItem('token')
-    return localStorage.getItem('token')
+    if (newToken) sessionStorage.setItem('token', newToken)
+    if (logOut) sessionStorage.removeItem('token')
+    return sessionStorage.getItem('token')
   }
 
   _fetch = async (url, method = 'GET', payload = null) => {

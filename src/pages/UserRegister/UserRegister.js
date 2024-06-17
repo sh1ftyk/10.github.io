@@ -6,7 +6,7 @@ import { register } from '../../store/reducers'
 import { Signup } from '../../components/UserForm/UserForm'
 
 const UserRegister = ({ authorized, register }) => {
-  if (authorized) return <Redirect to="/profile" />
+  if (authorized) return <Redirect to="/" />
 
   return <Signup onFinish={register} />
 }

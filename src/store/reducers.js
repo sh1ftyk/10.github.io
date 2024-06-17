@@ -11,7 +11,7 @@ const initialState = {
   totalPages: 1,
   currentPost: {},
   user: {},
-  authorized: false,
+  authorized: true,
   loading: true,
   error: '',
 }

@@ -6,7 +6,7 @@ import { signin } from '../../store/reducers'
 import { Login } from '../../components/UserForm/UserForm'
 
 const UserLogin = ({ authorized, signin }) => {
-  if (authorized) return <Redirect to="/profile" />
+  if (authorized) return <Redirect to="/" />
 
   return <Login onFinish={signin} />
 }
